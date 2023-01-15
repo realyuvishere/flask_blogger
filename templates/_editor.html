@@ -1,0 +1,51 @@
+{% block editor %}
+
+{% if showCTA %}
+<button class="btn btn-primary" id="editor-cta" data-bs-toggle="modal" data-bs-target="#editorModal">
+    <i class="bi bi-pen"></i>
+</button>
+{% endif %}
+
+<div class="modal fade" id="editorModal" tabindex="-1" aria-labelledby="editorModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen-xxl-down modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Post Editor</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ url_for('newPostPage') }}" method="post">
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="blog_title" name="blog_title" type="text" placeholder="Blog title" value="" />
+                        <label for="blog_title" class="form-label">Title</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" id="blog_content" name="blog_content" placeholder="Blog content" style="height: 20rem;" value=""></textarea>
+                        <label for="blog_content" class="form-label">Content</label>
+                    </div>
+                    <!-- <div class="mb-3" id="custom-file">
+                        <label for="blog_img" class="btn btn-outline-tertiary d-block w-100">
+                            <span class="bi bi-upload"></span> Upload a cover image
+                            <input type="file" id="blog_img" name="blog_img" class="d-none" />
+                        </label>
+                        <div id="preview_img" class="my-3">
+                            <h3>Preview</h3>
+                            <div id="preview_img_container">
+                                <button class="btn btn-danger w-100 d-block" type="button">
+                                    <span class="bi bi-trash3-fill" style="padding-right: 6px;"></span>Delete cover image
+                                </button>
+                                <img src="{{ image }}" id="preview_img_src" class="img-fluid">
+                            </div>
+                        </div>
+                    </div> -->
+                    <button type="submit" class="btn btn-outline-success">Save</button>
+                </form>
+            </div>
+            <!-- <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success">Save changes</button>
+            </div> -->
+        </div>
+    </div>
+</div>
+{% endblock %}

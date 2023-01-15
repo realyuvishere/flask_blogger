@@ -1,0 +1,63 @@
+{% extends '_base.html' %}
+
+{% block pagetitle%}
+BlogLite | {{ post.title }} by {{ author.username }}
+{% endblock %}
+
+{% block header %}
+{% include '_nav.html' %}
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h1 style="font-weight: 300">{{ post.title }}</h1>
+                    <p class="text-muted">
+                        <small>
+                            By <a href="{{ url_for('profile', username=author.username) }}">
+                                {{ author.username }}
+                            </a>
+                        </small>
+                    </p>
+                    <p class="text-muted">
+                        <small>
+                            Dated: {{ showTime(post.timestamp//(10**9)).strftime('%d %h %y, %H:%M') }}
+                        </small>
+                    </p>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        {{ post.content }}
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <div class="btn-group w-100" role="group">
+                        <a href="{{ url_for('likePostPage', pid=post.id) }}" class="btn btn-outline-primary {% if liked %}active{% endif %}">
+                            <i class="bi bi-hand-thumbs-up"></i> <small>{{ likeCount }}</small>
+                        </a>
+                        <button type="button" class="btn btn-outline-primary">
+                            <i class="bi bi-chat-square-text"></i>
+                        </button>
+                        <!-- <button type="button" class="btn btn-primary">Right</button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <h5>Comments</h5>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/signup.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% block searchbar %}
+
+<div class="offcanvas offcanvas-top" tabindex="-1" id="searchCanvas" aria-labelledby="searchCanvasLabel">
+    <div class="offcanvas-header">
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <h5 id="searchCanvasLabel">Search for user</h5>
+        <form action="{{ url_for('searchUser') }}" method="post">
+            <div class="form-floating input-group mb-3">
+                <input class="form-control" id="searchbar" name="searchbar" type="text" placeholder="Enter a username" value="" />
+                <button class="btn btn-outline-primary" type="submit">Search</button>
+                <label for="searchbar" class="form-label">Enter a username</label>
+            </div>
+            <div class="form-floating mb-3">
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen-xxl-down modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Search</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="searchbar" type="text" placeholder="Search for users..." value="" />
+                        <label for="searchbar" class="form-label">Search for users...</label>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> -->
+{% endblock %}

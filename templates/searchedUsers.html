@@ -1,0 +1,29 @@
+{% extends '_base.html' %}
+
+{% block pagetitle%}
+BlogLite | Search results
+{% endblock %}
+
+{% block header %}
+{% include '_nav.html' %}
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="list-group">
+                {% if users | length > 0 %}
+                    {% for user in users %}
+                    <a href="{{ url_for('profile', username=user.username) }}" class="list-group-item list-group-item-action">{{ user.username }}</a>
+                    {% endfor %}
+                {% else %}
+                <h5 class="text-center">No users found with that name.</h5>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+{% endblock %}

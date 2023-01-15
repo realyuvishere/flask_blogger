@@ -1,0 +1,36 @@
+{% block editProfile %}
+
+<div class="modal fade" id="editProfile" tabindex="-1" aria-labelledby="editProfileLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen-xxl-down modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Profile Editor</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ url_for('loggedUserProfile') }}" method="post">
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="username" name="username" type="text" placeholder="Username" value="{{ data.username }}" />
+                        <label for="username" class="form-label">Username</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="name" name="name" type="text" placeholder="Name" value="{{ data.name }}" />
+                        <label for="name" class="form-label">Name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="email" name="email" type="email" placeholder="Email" value="{{ data.email }}" />
+                        <label for="email" class="form-label">Email</label>
+                    </div>
+                    <div class="w-100 text-center">
+                        <button class="btn btn-outline-primary" type="submit">Save changes</button>
+                    </div>
+                </form>
+            </div>
+            <!-- <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success">Save changes</button>
+            </div> -->
+        </div>
+    </div>
+</div>
+{% endblock %}

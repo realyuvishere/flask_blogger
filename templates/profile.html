@@ -1,0 +1,123 @@
+{% extends '_base.html' %}
+
+{% block pagetitle%}
+BlogLite | {{ data.username }}'s profile
+{% endblock %}
+
+{% block header %}
+{% include '_nav.html' %}
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="py-4 px-5 mt-4 bg-light">
+                <h4 class="display-6">{{ data.username }}</h4>
+                <p class="lead">
+                    <small>({{ data.name }})</small>
+                </p>
+                {% if not ownprofile %}
+                <div class="container-fluid my-3">
+                    <div class="row">
+                        <div class="col">
+                            <a class="btn btn-link" href="{{ url_for('followUserPage', fid=data.id) }}">
+                                {% if following %}
+                                Unfollow
+                                {% else %}
+                                Follow
+                                {% endif %}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                <div class="row">
+                    <div class="col">
+                        <div class="text-center p-3" style="background-color: rgba(0,0,0,0.05);">
+                            <h6 class="m-0">Posts</h6>
+                            <div class="lead">{{ posts_count }}</div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="text-center p-3" style="background-color: rgba(0,0,0,0.05);">
+                            <h6 class="m-0">Followers</h6>
+                            <div class="lead">{{ followers_count }}</div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="text-center p-3" style="background-color: rgba(0,0,0,0.05);">
+                            <h6 class="m-0">Following</h6>
+                            <div class="lead">{{ following_count }}</div>
+                        </div>
+                    </div>
+                </div>
+                {% if edit %}
+                <div class="mt-4 row">
+                    <div class="col">
+                        <button class="btn btn-outline-primary w-100" data-bs-toggle="modal" data-bs-target="#editProfile">
+                            <i class="bi bi-pencil"></i> Edit details
+                        </button>
+                    </div>
+                    <div class="col">
+                        <a href="{{ url_for('profile', username=data.username) }}" class="btn btn-link w-100">
+                            Preview
+                        </a>
+                    </div>
+                </div>
+                {% include '_editProfile.html' %}
+                {% endif %}
+            </div>
+
+            <div class="p-3">
+                <h5>
+                    {% if edit %}
+                    Your posts
+                    {% else %}
+                    Posts by {{ data.username }}
+                    {% endif %}
+                </h5>
+
+                <div id="mainfeed">
+                    {% if (posts | length > 0) %}
+                        {% for post in posts %}
+                        <div class="card mt-5">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ post.title }}</h5>
+                                <p class="card-text text-truncate">
+                                    {{ post.content }}
+                                </p>
+                                <p class="card-text">
+                                    <small class="text-muted">
+                                        Dated: {{ showTime(post.timestamp//(10**9)).strftime('%d %h %y, %H:%M') }}
+                                    </small>
+                                </p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="{{ url_for('viewPost', pid=post.id) }}" class="btn btn-link w-100 d-block">Read on</a>
+                                {% if edit %}
+                                <a href="{{ url_for('deletePostPage', pid=post.id) }}" class="btn btn-link w-100 d-block">Delete</a>
+                                <a></a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                    <div class="alert alert-warning" role="alert">
+                        The user has no posts yet.
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+{% include '_editor.html' %}
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+{% endblock %}

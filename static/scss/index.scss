@@ -1,0 +1,82 @@
+@import './imports';
+// @import './vars';
+@import './custom';
+
+
+@import '../bootstrap/scss/bootstrap.scss';
+
+
+* {
+    font-family: 'Noto Sans';
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+main {
+    padding-bottom: 1.5rem;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: 'Montserrat';
+}
+
+footer {
+    padding: 1rem;
+    text-align: center;
+    background-color: #eee;
+    margin-top: auto;
+    bottom: 0;
+    position: relative;
+}
+
+button, input, textarea {
+    border-radius: 0 !important;
+    border-width: 2.5px !important;
+}
+
+.btn-close, .btn-link {
+    &:hover {
+        background-color: rgba(0,0,0,0.05);
+    }
+}
+
+.modal-header {
+    padding-right: 1.5rem !important;
+}
+
+#editor-cta {
+    position: fixed;
+    bottom: 64px;
+    right: 16px;
+    z-index: 99;
+    
+
+    &:hover {
+        &::before {
+            content: 'Create Post';
+            padding-right: 8px;
+            animation: .2s fromleft ease;
+            -webkit-animation: .2s fromleft ease;
+            white-space: nowrap;
+        }
+    }
+}
+
+#mainfeed {
+    overflow-y: auto;
+    height: 100%;
+    .card {
+        border-radius: 0;
+        &-footer {
+            padding: 1rem;
+        }
+    }
+}
+
+@keyframes fromleft {from{margin-right: -100px;opacity: 0;}to{margin-right: 0;opacity: 1;}}
+@-webkit-keyframes fromleft {from{margin-right: -100px;opacity: 0;}to{margin-right: 0;opacity: 1;}}

@@ -1,0 +1,60 @@
+{% extends '_base.html' %}
+
+{% block pagetitle%}
+BlogLite | Signup
+{% endblock %}
+
+{% block body %}
+<div class="py-5 d-flex align-items-center w-100">
+    <div class="container">
+        <h1 class="text-center display-6 mb-5">Welcome to BlogLite</h1>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="text-center mb-3">
+                    <b>Create your account</b>
+                </div>
+                <form method="post" action="{{ url_for('signup') }}">
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="name" name="name" type="text" placeholder="Enter your name" />
+                        <label for="name" class="form-label">Name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="email" name="email" type="email" placeholder="Enter your email" required />
+                        <label for="email" class="form-label">Email</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="username" name="username" type="text" placeholder="Enter your username" required />
+                        <label for="username" class="form-label">Username</label>
+                    </div>
+                    <div class="form-floating input-group mb-3">
+                        <input class="form-control" id="password" name="password" type="password" placeholder="Enter your password" required />
+                        <button class="btn btn-link" type="button" id="toggle_password">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                        <label for="password" class="form-label">Password</label>
+                    </div>
+                    <!-- <div class="form-floating mb-3">
+                        <input class="form-control" id="password_confirm" type="password" placeholder="Confirm your password"  />
+                        <label for="password_confirm" class="form-label">Confirm Password</label>
+                    </div>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <div>
+                            <i class="fa fa-check-circle-o fa-lg"></i> Correct password
+                        </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div> -->
+                    <button type="submit" class="btn btn-primary w-100 d-block" id="submit" value="submit">Let's roll</button>
+                </form>
+                <div class="mt-3">
+                    Already have an account? <a href="/login">Log in</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/signup.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends '_base.html' %}
+
+{% block pagetitle%}
+Feed
+{% endblock %}
+
+{% block header %}
+{% include '_nav.html' %}
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div id="mainfeed">
+                {% if (posts | length > 0) %}
+                    {% for p in posts %}
+                    
+                    <div class="card mt-5">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ p['post'].title }}</h5>
+                            <p class="card-text">
+                                <small class="text-muted">
+                                    By <a href="{{ url_for('profile', username=p['author'].username) }}">
+                                        {{ p['author'].username }}
+                                    </a>
+                                </small>
+                            </p>
+                            <p class="card-text text-truncate">
+                                {{ p['post'].content }}
+                            </p>
+                            <p class="card-text">
+                                <small class="text-muted">
+                                    Dated: {{ showTime(p['post'].timestamp//(10**9)).strftime('%d %h %y, %H:%M') }}
+                                </small>
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="{{ url_for('viewPost', pid=p['post'].id) }}" class="btn btn-link w-100 d-block">Read on</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% include '_editor.html' %}
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+{% endblock %}

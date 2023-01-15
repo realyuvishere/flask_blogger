@@ -1,0 +1,17 @@
+{% extends '_base.html' %}
+
+{% block pagetitle%}
+BlogLite | {{ error_code }}
+{% endblock %}
+
+{% block body %}
+<div>
+    <h1>There seems to be some issue right now!</h1>
+    <div>
+        <p>We encountered the following error:</p>
+        <div>Status code : {{ error_code }}</div>
+        <div>Message : {{ error_message}}</div>
+        <div><button onclick="history.back()" type="button" class="btn btn-link">Go back</button></div>
+    </div>
+</div>
+{% endblock %}

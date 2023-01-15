@@ -1,0 +1,26 @@
+@import './vars';
+
+$theme-colors: (
+    "primary": $primary,
+    "secondary": $secondary,
+    "success": $success,
+    "warning": $warning,
+    "danger": $danger,
+    "dark": $dark,
+    "neutral": $neutral,
+    "tertiary": $tertiary,
+    "red": $red,
+    "yellow": $yellow,
+    "light": $light,
+    "white": $white,
+);
+
+.form-control:focus {
+    color: $primary !important;
+}
+
+.form-floating.input-group {
+    .form-label {
+        z-index: 3 !important;
+    }
+}
